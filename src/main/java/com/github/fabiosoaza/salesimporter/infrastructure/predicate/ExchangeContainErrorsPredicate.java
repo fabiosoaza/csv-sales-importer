@@ -4,7 +4,7 @@ import org.apache.camel.Exchange;
 import org.apache.camel.Predicate;
 import org.springframework.stereotype.Component;
 
-import com.github.fabiosoaza.salesimporter.infrastructure.utils.ParseErrorsUtils;
+import com.github.fabiosoaza.salesimporter.infrastructure.util.ParseErrorsUtils;
 
 @Component
 public class ExchangeContainErrorsPredicate implements Predicate{

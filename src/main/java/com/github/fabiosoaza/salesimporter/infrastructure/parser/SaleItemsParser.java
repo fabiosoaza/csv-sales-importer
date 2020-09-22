@@ -13,8 +13,8 @@ import org.springframework.stereotype.Component;
 
 import com.github.fabiosoaza.salesimporter.infrastructure.exception.ParseRecordException;
 import com.github.fabiosoaza.salesimporter.infrastructure.record.SaleItemRecord;
-import com.github.fabiosoaza.salesimporter.infrastructure.utils.BigDecimalUtils;
-import com.github.fabiosoaza.salesimporter.infrastructure.utils.ParseUtils;
+import com.github.fabiosoaza.salesimporter.infrastructure.util.BigDecimalUtils;
+import com.github.fabiosoaza.salesimporter.infrastructure.util.ParseUtils;
 
 @Component
 public class SaleItemsParser {
