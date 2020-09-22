@@ -5,7 +5,7 @@ import java.math.BigDecimal;
 import org.apache.camel.dataformat.bindy.annotation.CsvRecord;
 import org.apache.camel.dataformat.bindy.annotation.DataField;
 
-import com.github.fabiosoaza.salesimporter.infrastructure.utils.ParseUtils;
+import com.github.fabiosoaza.salesimporter.infrastructure.util.ParseUtils;
 
 @CsvRecord(separator = ParseUtils.RECORD_SEPARATOR)
 public class SellerRecord implements ImportRecord{

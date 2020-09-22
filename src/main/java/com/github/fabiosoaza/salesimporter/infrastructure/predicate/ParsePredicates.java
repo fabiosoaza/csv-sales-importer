@@ -3,7 +3,7 @@ package com.github.fabiosoaza.salesimporter.infrastructure.predicate;
 import org.apache.camel.Exchange;
 import org.apache.camel.Predicate;
 
-import com.github.fabiosoaza.salesimporter.infrastructure.utils.ParseUtils;
+import com.github.fabiosoaza.salesimporter.infrastructure.util.ParseUtils;
 
 public class ParsePredicates {
 	

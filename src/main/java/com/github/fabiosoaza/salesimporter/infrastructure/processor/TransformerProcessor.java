@@ -11,7 +11,7 @@ import org.apache.camel.Processor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.github.fabiosoaza.salesimporter.infrastructure.components.SalesSumarizer;
+import com.github.fabiosoaza.salesimporter.infrastructure.component.SalesSummarizer;
 import com.github.fabiosoaza.salesimporter.infrastructure.record.ImportRecord;
 import com.github.fabiosoaza.salesimporter.infrastructure.record.SummaryRecord;
 import com.github.fabiosoaza.salesimporter.infrastructure.validator.ImportRecordValidator;
@@ -19,11 +19,11 @@ import com.github.fabiosoaza.salesimporter.infrastructure.validator.ImportRecord
 @Component
 public class TransformerProcessor implements Processor {
 
-	private SalesSumarizer salesSumarizer;
+	private SalesSummarizer salesSumarizer;
 	private ImportRecordValidator importRecordValidator;
 	
 	@Autowired
-	public TransformerProcessor(SalesSumarizer salesSumarizer, ImportRecordValidator importRecordValidator) {
+	public TransformerProcessor(SalesSummarizer salesSumarizer, ImportRecordValidator importRecordValidator) {
 		super();
 		this.salesSumarizer = salesSumarizer;
 		this.importRecordValidator = importRecordValidator;
@@ -31,6 +31,12 @@ public class TransformerProcessor implements Processor {
 
 	@Override
 	public void process(Exchange exchange) throws Exception {
+		List<ImportRecord> list = extractRecordsFromExchange(exchange);		
+		SummaryRecord summary = salesSumarizer.sum(list);
+		exchange.getMessage().setBody(summary);
+	}
+
+	private List<ImportRecord> extractRecordsFromExchange(Exchange exchange) {
 		Stream stream = Optional.ofNullable(exchange.getMessage().getBody(List.class))
 				.orElse(Collections.emptyList())
 				.stream();
@@ -38,9 +44,8 @@ public class TransformerProcessor implements Processor {
 				.filter(item->item instanceof ImportRecord )
 				.map(record->(ImportRecord)record )
 				.filter(record->importRecordValidator.validate((ImportRecord)record))
-				.collect(Collectors.toList());		
-		SummaryRecord summary = salesSumarizer.sum(list);
-		exchange.getMessage().setBody(summary);
+				.collect(Collectors.toList());
+		return list;
 	}
 
 }

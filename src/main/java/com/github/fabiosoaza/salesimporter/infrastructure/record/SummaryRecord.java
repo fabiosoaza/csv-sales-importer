@@ -3,7 +3,7 @@ package com.github.fabiosoaza.salesimporter.infrastructure.record;
 import org.apache.camel.dataformat.bindy.annotation.CsvRecord;
 import org.apache.camel.dataformat.bindy.annotation.DataField;
 
-import com.github.fabiosoaza.salesimporter.infrastructure.utils.ParseUtils;
+import com.github.fabiosoaza.salesimporter.infrastructure.util.ParseUtils;
 
 @CsvRecord(separator = ParseUtils.RECORD_SEPARATOR, generateHeaderColumns=true)
 public class SummaryRecord {
